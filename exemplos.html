@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplos - Lei de Ohm</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+ /* Estilo geral da calculadora */
+ .calculadora {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto; /* Centraliza a calculadora na tela */
+    margin-top: 30px;
+}
+
+/* Estilo para os campos de entrada */
+input[type="number"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo dos botões */
+button {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #0056b3;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+/* Efeito de hover nos botões */
+button:hover {
+    background-color: #003b73;
+}
+
+/* Estilo para o grid de botões */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    gap: 10px;
+}
+
+/* Estilo para o botão de resultado */
+button.resultado {
+    background-color: #28a745;
+}
+
+button.resultado:hover {
+    background-color: #218838;
+}
+
+/* Estilo para o botão de limpar */
+button.limpar {
+    background-color: #dc3545;
+}
+
+button.limpar:hover {
+    background-color: #c82333;
+}
+
+#resultado {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .calculadora {
+        padding: 20px;
+    }
+
+    input[type="number"], button {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+.experimento {
+  text-align: center;
+}
+
+.exemplopratico {
+    margin: 20px;
+    color: #0056b3;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lei de Ohm - Exemplos</h1>
+        <nav>
+            <a href="index.html">Início</a> |
+            <a href="formulas.html">Fórmulas</a> |
+            <a href="exemplos.html">Exemplos</a> |
+            <a href="teste.html">Teste de Conhecimento</a>
+        </nav>
+    </header>
+
+    <section>
+          <div class="exemplopratico">
+            <h2>Exemplos Práticos</h2>
+          </div>
+
+        <div class="conteudo">
+          <h3>🔹 Exemplo 1: Cálculo da Tensão</h3>
+          <p> Se um circuito tem uma resistência de 5Ω (ohms) e a corrente que passa por ele é de 3A (amperes), podemos calcular a tensão (V) usando a fórmula da Lei de Ohm: </p>
+          <p><strong>V = R × I</strong></p>
+          <hr>
+          <br>
+          <h4>Passo a Passo do Calculo:</h4>
+          <ol>
+              <li>Identificamos os valores dados no problema:</li>
+              <ul type="disc">
+                  <li>Resistência (R) = 5Ω</li>
+                  <li>Corrente (I) = 3A</li>
+                  <li>Tensão (V) = ? (valor a ser encontrado)</li>
+              </ul>
+              <li>Aplicamos a fórmula:</li>
+              <p><strong>V = 5Ω × 3A</strong></p>
+              <li>Realizamos a multiplicação</li>
+              <p><strong><mark>v = 15V</mark></strong></p>
+          </ol>
+          <hr>
+          <br>
+          <h4>Explicação Física:</h4>
+          <p>Isso significa que <strong>para que uma corrente de 3A circule por um resistor de 5Ω, é necessário aplicar uma tensão de 15V.</strong></p>
+          <p>A tensão pode ser entendida como a "força elétrica" que empurra os elétrons através do circuito. Quanto maior a resistência, mais tensão será necessária para que a mesma corrente continue fluindo.</p>
+        </div>
+        
+
+        <div class="conteudo">
+          <h3>🔹 Exemplo 2: Cálculo da Corrente</h3>
+          <p>Agora, suponha que um aparelho receba uma tensão de 24V e tenha uma resistência de 8Ω. Queremos descobrir qual será a corrente elétrica (I) que passará pelo circuito.
+            A fórmula da Lei de Ohm para calcular a corrente é:</p>
+          <p><strong>I = V ÷ R</strong></p>
+          <hr>
+          <br>
+          <h4>Passo a Passo do Calculo:</h4>
+          <ol>
+            <li>Indentificação os valores fornecidos: </li>
+            <ul type="disc">
+              <li>Tensão (V) = 24V</li>
+              <li>Resistência (R) = 8Ω</li>
+              <li>Corrente (I) = ? (valor a ser encontrado)</li>
+             </ul>
+            <li>Aplicamos a fórmula: </li>
+            <p><strong>I = 24V ÷  8Ω</strong></p>
+            <li>Resolvendo a divisão: </li>
+            <p><strong><mark>I = 3A</mark></strong></p>
+          </ol>
+          <hr>
+          <br>
+          <h4>Explicando Física: </h4>
+          <p>Isso significa que <strong>uma corrente de 3A circulará pelo circuito</strong> quando aplicamos uma tensão de <strong>24V</strong> sobre um resistor de <strong>8Ω</strong>.</p>
+          <p>A corrente representa o fluxo de elétrons passando pelo circuito. Quanto maior a resistência, <strong>menor será a corrente elétrica para a mesma tensão</strong>.</p>
+        </div>
+        
+
+        <div class="conteudo">
+          <h3>🔹 Exemplo 3: Cálculo da Resistência</h3>
+          <p>Agora, suponha que um circuito tenha uma tensão de 10V e uma corrente de 2A. Queremos calcular a resistência elétrica (R).
+            A fórmula da Lei de Ohm para encontrar a resistência é:</p>
+          <p><strong>R = V ÷ I</strong></p>
+          <hr>
+          <br>
+          <h4>Passo a Passo do Calculo:</h4>
+          <ol>
+            <li>Identificamos os valores fornecidos:</li>
+            <ul type="disc">
+              <li>Tensão (V) = 10V</li>
+              <li>Corrente (I) = 2A</li>
+              <li>Resistência (R) = ? (valor a ser encontrado)</li>
+            </ul>
+            <li>Aplicamos a fórmula:</li>
+            <p><strong>R = 10V ÷ 2A</strong></p>
+            <li>Resolvemos a divisão:</li>
+            <p><strong><mark>R = 5Ω</mark></strong></p>
+          </ol>
+          <hr>
+          <br>
+          <h4>Explicação Física: </h4>
+          <p>Isso significa que <strong>para que uma corrente de 2A circule pelo circuito com uma tensão de 10V, a resistência deve ser de 5Ω</strong>.</p>
+          <p>A resistência elétrica representa <strong>a oposição à passagem da corrente</strong>. Se a resistência for maior, a corrente será menor para a mesma tensão.</p>
+        </div>
+
+        <div class="experimento">
+          <h3>🛠️ Experimente você mesmo!</h3>
+          <p>Agora você pode calcular a Tensão, Corrente ou Resistência usando a Lei de Ohm! Escolha uma variável para calcular:</p>
+        </div>
+      
+        <div class="calculadora">
+          <h3>Calculadora de Lei de Ohm</h3>
+          <input type="number" id="inputV" placeholder="Voltagem (V)">
+          <input type="number" id="inputI" placeholder="Corrente (I)">
+          <input type="number" id="inputR" placeholder="Resistência (R)">
+          
+          <div class="grid">
+              <button onclick="calcular()">Calcular</button>
+              <button class="limpar" onclick="limpar()">Limpar</button>
+          </div>
+      
+          <h2>Resultado:</h2>
+          <p id="resultado">Preencha os valores e clique em "Calcular".</p>
+      </div>
+      
+      <script>
+          function calcular() {
+              let V = document.getElementById('inputV').value;
+              let I = document.getElementById('inputI').value;
+              let R = document.getElementById('inputR').value;
+              let resultado = "";
+      
+              // Calculando com base nos valores fornecidos
+              if (V === "" && I !== "" && R !== "") {
+                  V = I * R;
+                  resultado = `Voltagem (V) = ${V} V`;
+              } else if (I === "" && V !== "" && R !== "") {
+                  I = V / R;
+                  resultado = `Corrente (I) = ${I} A`;
+              } else if (R === "" && V !== "" && I !== "") {
+                  R = V / I;
+                  resultado = `Resistência (R) = ${R} Ω`;
+              } else {
+                  resultado = "Preencha dois valores e clique em 'Calcular'.";
+              }
+      
+              document.getElementById('resultado').textContent = resultado;
+          }
+      
+          function limpar() {
+              document.getElementById('inputV').value = '';
+              document.getElementById('inputI').value = '';
+              document.getElementById('inputR').value = '';
+              document.getElementById('resultado').textContent = 'Preencha os valores e clique em "Calcular".';
+          }
+      </script>
+      
+</body>
+</html>

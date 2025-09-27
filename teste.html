@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre a Lei de Ohm</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="imgs/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+#result {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    transition: all 0.5s ease; /* Animação suave */
+}
+
+/* Cores para diferentes faixas de acertos */
+.result-red {
+    color: red;
+}
+
+.result-yellow {
+    color: yellow;
+}
+
+.result-green-light {
+    color: lightgreen;
+}
+
+.result-green-dark {
+    color: darkgreen;
+}
+
+/* Animação para o emoji e texto */
+.animate {
+    transform: scale(1.2);
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Estilo do botão de voltar */
+#backButton {
+    display: none; /* Inicia com display none */
+    margin: 30px auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+}
+
+#backButton:hover {
+    background-color: #45a049;
+}
+
+.container {
+max-width: 600px;
+margin: 20px auto;
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container2 {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.question {
+margin-bottom: 20px;
+}
+.question p {
+font-weight: bold;
+}
+.options input {
+margin-right: 10px;
+}
+#result {
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+}
+.level-buttons {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px;
+margin-top: 20px;
+}
+
+.level-buttons button {
+    width: 80%;
+    padding: 12px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: white;
+}
+
+.level-buttons button:nth-child(1) {
+    background-color: #3498db;
+}
+.level-buttons button:nth-child(2) {
+    background-color: #f1c40f;
+}
+.level-buttons button:nth-child(3) {
+    background-color: #e74c3c;
+}
+
+.level-buttons button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+    </style>
+</head>
+<body>
+    <header>
+            <h1>Lei de Ohm</h1>
+        <nav>
+            <a href="index.html">Início</a> |
+            <a href="formulas.html">Fórmulas</a> |
+            <a href="exemplos.html">Exemplos</a> |
+            <a href="teste.html">Teste de Conhecimento</a>
+        </nav>
+    </header>
+
+<!-- Tela de seleção de nível -->
+<div class="container2" id="levelSelection">
+    <h2>Escolha o nível de dificuldade</h2>
+    <div class="level-buttons">
+        <button onclick="startQuiz('novato')">Novato</button>
+        <button onclick="startQuiz('intermediario')">Intermediário</button>
+        <button onclick="startQuiz('mestre')">Mestre</button>
+    </div>
+</div>
+
+<!-- Tela do quiz -->
+<div class="container" id="quizContainer" style="display:none;">
+    <h2>Quiz sobre a Lei de Ohm⚡</h2>
+    <form id="quizForm">
+        <div id="questions"></div>
+        <div id="result"></div>
+        <button type="button" onclick="calcularResultado()">Ver Resultado</button>
+        <button id="resetButton" type="button" onclick="resetQuiz()" style="display:none; margin: 20px auto; padding: 10px 20px; background-color: #ff0000; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.2em;">Resetar</button>
+
+    </form>
+</div>
+
+<!-- Botão para voltar à tela inicial -->
+<button id="backButton" onclick="backToStart()">Voltar à Tela Inicial</button>
+
+<script>
+// Função para iniciar o quiz com base no nível escolhido
+let currentLevel = ""; // Variável para armazenar o nível selecionado
+
+function startQuiz(level) {
+    currentLevel = level; // Armazena o nível atual
+    document.getElementById('levelSelection').style.display = 'none';
+    document.getElementById('quizContainer').style.display = 'block';
+    document.getElementById('backButton').style.display = 'block'; // Mostrar o botão de voltar
+    generateQuestions(level);
+}
+
+// Função para gerar perguntas com base no nível
+function generateQuestions(level) {
+    const questions = {
+        novato: [
+            {
+                question: "1. Qual é a fórmula da Lei de Ohm?",
+                options: ["V = I × R", "V = I / R", "I = V × R", "R = V + I"],
+                correct: "V = I × R"
+            },
+            {
+                question: "2. Qual é a unidade de resistência no Sistema Internacional?",
+                options: ["Ampere", "Volt", "Ohm", "Watt"],
+                correct: "Ohm"
+            },
+            {
+                question: "3. O que a Lei de Ohm relaciona?",
+                options: ["Tensão, corrente e resistência", "Tensão, temperatura e resistência", "Corrente, resistência e potência", "Corrente, temperatura e resistência"],
+                correct: "Tensão, corrente e resistência"
+            },
+            {
+                question: "4. Qual é a unidade de medida da corrente elétrica?",
+                options: ["Volt", "Ohm", "Ampere", "Joule"],
+                correct: "Ampere"
+            },
+            {
+                question: "5. Se a resistência de um circuito é 10 ohms e a corrente é 2 amperes, qual é a voltagem?",
+                options: ["5 V", "10 V", "20 V", "15 V"],
+                correct: "20 V"
+            },
+            {
+                question: "6. O que acontece quando aumentamos a resistência em um circuito com voltagem constante?",
+                options: ["A corrente diminui", "A corrente aumenta", "A corrente se mantém constante", "A corrente é zero"],
+                correct: "A corrente diminui"
+            },
+            {
+                question: "7. Se a corrente em um circuito é 3 A e a resistência é 4 ohms, qual é a voltagem?",
+                options: ["12 V", "7 V", "8 V", "9 V"],
+                correct: "12 V"
+            },
+            {
+                question: "8. A Lei de Ohm é válida apenas para circuitos com resistência constante. O que acontece se a resistência variar?",
+                options: ["A Lei de Ohm ainda se aplica", "A Lei de Ohm não se aplica", "A corrente não é mais calculável", "A voltagem se altera"],
+                correct: "A Lei de Ohm ainda se aplica"
+            },
+            {
+                question: "9. Se a voltagem de um circuito é 10 V e a corrente é 2 A, qual é a resistência?",
+                options: ["5 ohms", "2 ohms", "10 ohms", "4 ohms"],
+                correct: "5 ohms"
+            },
+            {
+                question: "10. A resistência de um fio depende de qual fator?",
+                options: ["Comprimento", "Temperatura", "Material", "Todos os anteriores"],
+                correct: "Todos os anteriores"
+            }
+        ],
+        intermediario: [
+            {
+                question: "1. Se a resistência de um circuito é 10 ohms e a corrente é 2 amperes, qual é a voltagem?",
+                options: ["5 V", "10 V", "20 V", "15 V"],
+                correct: "20 V"
+            },
+            {
+                question: "2. A Lei de Ohm estabelece uma relação entre quais grandezas?",
+                options: ["Tensão, resistência e densidade", "Tensão, corrente e resistência", "Corrente, temperatura e resistência", "Corrente, resistência e potência"],
+                correct: "Tensão, corrente e resistência"
+            },
+            {
+                question: "3. Qual é a fórmula para calcular a resistência em um circuito?",
+                options: ["R = V × I", "R = V / I", "R = I × V", "R = I / V"],
+                correct: "R = V / I"
+            },
+            {
+                question: "4. Se a corrente em um circuito é 4 A e a resistência é 2 ohms, qual é a voltagem?",
+                options: ["2 V", "4 V", "8 V", "10 V"],
+                correct: "8 V"
+            },
+            {
+                question: "5. A resistência total em um circuito em série é dada pela soma de...",
+                options: ["Resistências individuais", "Tensões", "Correntes", "Potências"],
+                correct: "Resistências individuais"
+            },
+            {
+                question: "6. Qual é a unidade de medida da potência elétrica?",
+                options: ["Volt", "Ohm", "Watt", "Ampere"],
+                correct: "Watt"
+            },
+            {
+                question: "7. Se a tensão em um circuito é 15 V e a corrente é 5 A, qual é a resistência?",
+                options: ["3 ohms", "10 ohms", "5 ohms", "2 ohms"],
+                correct: "3 ohms"
+            },
+            {
+                question: "8. Se a resistência de um circuito for duplicada, o que acontece com a corrente, mantendo a tensão constante?",
+                options: ["A corrente dobra", "A corrente se mantém a mesma", "A corrente é reduzida pela metade", "A corrente é multiplicada por 4"],
+                correct: "A corrente é reduzida pela metade"
+            },
+            {
+                question: "9. Se a voltagem em um circuito aumenta e a resistência se mantém constante, o que acontece com a corrente?",
+                options: ["A corrente diminui", "A corrente se mantém constante", "A corrente aumenta", "A corrente se anula"],
+                correct: "A corrente aumenta"
+            },
+            {
+                question: "10. Qual das alternativas descreve corretamente a relação entre corrente, voltagem e resistência?",
+                options: ["A corrente é diretamente proporcional à resistência", "A voltagem é inversamente proporcional à corrente", "A corrente é diretamente proporcional à voltagem e inversamente proporcional à resistência", "A voltagem não influencia na corrente"],
+                correct: "A corrente é diretamente proporcional à voltagem e inversamente proporcional à resistência"
+            }
+        ],
+        mestre: [
+            {
+                question: "1. Se a tensão de um circuito é 12 V e a resistência é 6 ohms, qual é a corrente?",
+                options: ["0,5 A", "2 A", "6 A", "18 A"],
+                correct: "2 A"
+            },
+            {
+                question: "2. O que ocorre em um circuito com alta resistência e baixa tensão?",
+                options: ["A corrente será alta", "A corrente será baixa", "A corrente será muito instável", "A corrente será zero"],
+                correct: "A corrente será baixa"
+            },
+            {
+                question: "3. Qual é a potência dissipada em um resistor de 5 ohms quando a corrente é 3 A?",
+                options: ["45 W", "30 W", "15 W", "9 W"],
+                correct: "45 W"
+            },
+            {
+                question: "4. Qual é a fórmula para calcular a resistência total de resistores em paralelo?",
+                options: ["R = R1 + R2", "1/R = 1/R1 + 1/R2", "R = R1 - R2", "R = R1 × R2"],
+                correct: "1/R = 1/R1 + 1/R2"
+            },
+            {
+                question: "5. Em um circuito com 20 V e resistência de 4 ohms, qual é a corrente?",
+                options: ["0,2 A", "1 A", "5 A", "10 A"],
+                correct: "5 A"
+            },
+            {
+                question: "6. Qual é a unidade de medida da energia elétrica?",
+                options: ["Joule", "Volt", "Watt", "Ampere"],
+                correct: "Joule"
+            },
+            {
+                question: "7. Se a resistência de um circuito for de 10 ohms e a corrente for 5 A, qual é a potência dissipada?",
+                options: ["50 W", "25 W", "10 W", "100 W"],
+                correct: "250 W"
+            },
+            {
+                question: "8. Se a resistência total de um circuito é 10 ohms e a corrente é 2 A, qual é a voltagem total?",
+                options: ["5 V", "10 V", "20 V", "25 V"],
+                correct: "20 V"
+            },
+            {
+                question: "9. Qual a relação entre a potência e a voltagem em um circuito resistivo?",
+                options: ["P = V × I", "P = I² × R", "P = V² / R", "Todas as anteriores"],
+                correct: "Todas as anteriores"
+            },
+            {
+                question: "10. Em um circuito com resistência de 8 ohms e corrente de 2 A, qual é a energia dissipada em 10 segundos?",
+                options: ["160 J", "20 J", "80 J", "40 J"],
+                correct: "160 J"
+            }
+        ]
+                     };
+
+
+    const selectedQuestions = questions[level];
+    const questionsContainer = document.getElementById('questions');
+    questionsContainer.innerHTML = ''; // Limpar as questões anteriores
+
+    selectedQuestions.forEach((question, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+        questionDiv.innerHTML = `
+            <p>${question.question}</p>
+            <div class="options">
+                ${question.options.map((option, i) => `
+                    <input type="radio" name="q${index+1}" value="${option}" id="q${index+1}_option${i}">
+                    <label for="q${index+1}_option${i}">${option}</label><br>
+                `).join('')}
+            </div>
+        `;
+        questionsContainer.appendChild(questionDiv);
+    });
+}
+
+// Função para calcular o resultado
+function calcularResultado() {
+    const responses = {
+        novato: [
+            "V = I × R", "Ohm", "Tensão, corrente e resistência", "Ampere", "20 V", "A corrente diminui", "12 V", "A Lei de Ohm ainda se aplica", "5 ohms", "Todos os anteriores"
+        ],
+        intermediario: [
+            "20 V", "Tensão, corrente e resistência","R = V / I","8 V","Resistências individuais","Watt", "3 ohms","A corrente é reduzida pela metade","A corrente aumenta", "A corrente é diretamente proporcional à voltagem e inversamente proporcional à resistência"
+        ],
+        mestre: [
+            "2 A", "A corrente será baixa", "45 W", "1/R = 1/R1 + 1/R2", "5 A", "Joule", "250 W", "20 V", "Todas as anteriores", "160 J"
+        ]
+    };
+
+    let acertos = 0;
+    const selectedQuestions = document.querySelectorAll('.question');
+
+    selectedQuestions.forEach((question, index) => {
+        const selectedOption = question.querySelector('input:checked');
+        if (selectedOption && selectedOption.value === responses[currentLevel][index]) {
+            acertos++;
+        }
+    });
+
+    // Exibição do resultado com animação
+    const resultDiv = document.getElementById('result');
+    let resultText = `Você acertou ${acertos} de ${selectedQuestions.length} perguntas.`;
+    let resultClass = '';
+
+    if (acertos === 10) {
+        resultText += ' Excelente trabalho! 🎉';
+        resultClass = 'result-green-dark';
+    } else if (acertos >= 8) {
+        resultText += ' Bom trabalho! 😊';
+        resultClass = 'result-green-light';
+    } else if (acertos >= 5) {
+        resultText += ' Você está no caminho certo! 😐';
+        resultClass = 'result-yellow';
+    } else {
+        resultText += ' Pode melhorar! 😕';
+        resultClass = 'result-red';
+    }
+
+    resultDiv.textContent = resultText;
+    resultDiv.className = `animate ${resultClass}`; // Adiciona animação e cor
+}
+
+// Função para voltar à tela inicial
+function backToStart() {
+    document.getElementById('quizContainer').style.display = 'none';
+    document.getElementById('levelSelection').style.display = 'block';
+    document.getElementById('backButton').style.display = 'none'; // Esconder o botão
+}
+
+// Função para iniciar o quiz com base no nível escolhido
+function startQuiz(level) {
+    currentLevel = level; // Armazena o nível atual
+    document.getElementById('levelSelection').style.display = 'none';
+    document.getElementById('quizContainer').style.display = 'block';
+    document.getElementById('backButton').style.display = 'block'; // Mostrar o botão de voltar
+    document.getElementById('resetButton').style.display = 'block'; // Mostrar o botão de resetar
+    generateQuestions(level);
+}
+
+// Função para resetar o quiz
+function resetQuiz() {
+    document.getElementById('quizForm').reset(); // Reseta todas as respostas
+    document.getElementById('result').textContent = ''; // Limpa o resultado
+    document.getElementById('result').className = ''; // Remove classes de animação e cor
+}
+</script>
+
+</body>
+</html>
