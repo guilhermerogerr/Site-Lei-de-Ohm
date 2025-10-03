@@ -1,11 +1,11 @@
-# ⚡ Site Educativo - Lei de Ohm
+# Site Educativo - Lei de Ohm
 
 Este projeto foi desenvolvido como trabalho acadêmico e representa o meu primeiro contato com HTML e CSS.
 O objetivo foi criar um site didático sobre a Lei de Ohm, apresentando explicações teóricas, fórmulas, exemplos práticos e um quiz interativo.
 
 ---
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 * **index.html** → Página inicial com introdução histórica e aplicações da Lei de Ohm.
 * **formulas.html** → Tabela com as fórmulas (V, I e R), definições e interpretações.
@@ -16,7 +16,7 @@ O objetivo foi criar um site didático sobre a Lei de Ohm, apresentando explica�
 
 ---
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 ✔️ Explicação clara e objetiva sobre a Lei de Ohm.
 ✔️ Fórmulas apresentadas em tabela organizada.
@@ -26,7 +26,7 @@ O objetivo foi criar um site didático sobre a Lei de Ohm, apresentando explica�
 
 ---
 
-## 🔧 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * **HTML5**
 * **CSS3**
@@ -34,7 +34,7 @@ O objetivo foi criar um site didático sobre a Lei de Ohm, apresentando explica�
 
 ---
 
-## 📖 Como Visualizar
+## Como Visualizar
 
 1. Clone este repositório:
 
